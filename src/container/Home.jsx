@@ -40,7 +40,7 @@ const Home = () => {
     return (
       <div className='p-2 flex-1 h-screen overflow-y-scroll' ref={scrollRef}>
         <Routes>
-          <Route path='/expired_session' element={<SessionExpired />}  />
+          <Route path='/expired_session' element={<SessionExpired />} />
         </Routes>
       </div>
     )
@@ -61,11 +61,11 @@ const Home = () => {
           <div className='flex justify-center items-center'>
             <div className='border rounded-full w-8 h-8 overflow-hidden'>
               <img
-                src={`${process.env.REACT_APP_API_URL}${user?.profile_image}`}
-                alt={user?.username}
+                src={`${process.env.REACT_APP_API_URL}${userInfo?.profile_image}`}
+                alt={userInfo?.username}
                 className='cursor-pointer w-full h-full object-cover'
-                onClick={() =>
-                  setToggleSidebar(true)} />
+                onClick={() => setToggleSidebar(true)}
+              />
             </div>
           </div>
 

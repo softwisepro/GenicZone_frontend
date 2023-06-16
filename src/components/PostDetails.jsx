@@ -39,7 +39,7 @@ const PostDetails = () => {
             <Link className='flex justify-center items-center gap-2'>
               <div className='w-16 h-16 flex rounded-full border overflow-hidden'>
                 <img
-                  src={`${process.env.REACT_APP_API_URL}${postDetail?.postedByProfile?.profile_image}`}
+                  src={`${process.env.REACT_APP_API_URL}${ postDetail?.postedByProfile?.profile_image }`}
                   alt={postDetail?.postedByProfile?.username}
                   className='w-full h-full'
                 />
