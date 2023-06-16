@@ -61,8 +61,8 @@ const Home = () => {
           <div className='flex justify-center items-center'>
             <div className='border rounded-full w-8 h-8 overflow-hidden'>
               <img
-                src={`${process.env.REACT_APP_API_URL}${userInfo?.profile_image}`}
-                alt={userInfo?.username}
+                src={`${process.env.REACT_APP_API_URL}${user?.profile_image}`}
+                alt={user?.username}
                 className='cursor-pointer w-full h-full object-cover'
                 onClick={() => setToggleSidebar(true)}
               />
