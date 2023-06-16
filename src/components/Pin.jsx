@@ -27,10 +27,10 @@ const Pin = ({post,  post: { id, title, image, slug, about, user } }) => {
           className='absolute top-0 p-1 h-full transition-all px-16 ease-linear duration-300 w-full flex justify-center items-center'
         >
           <div className='absolute rounded-full px-5 flex bottom-0 justify-center items-center m-2 gap-5 bg-black/50 p-2  text-white'>
-            <div className='flex font-bold gap-1 justify-center items-center'>
+            {/* <div className='flex font-bold gap-1 justify-center items-center'>
               <RiHeartLine />
               <span className='text-xs'>10</span>
-            </div>
+            </div> */}
             <div className='flex font-bold gap-1 justify-center items-center'>
               <RiMessageFill />
               <span className='text-xs'>6</span>
