@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes slide {
+  from {
+    transform: translateX(-300px)
+  }
+  to {
+    transform: translateX(0px);
+  }
+}
+.animate-slide-in {
+  animation: slide 0.2s linear;
+}
