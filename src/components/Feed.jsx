@@ -14,19 +14,28 @@ const Feed = () => {
   useEffect(() => {
     setLoading(true)
 
-    try {
-      fetch(`${process.env.REACT_APP_API_URL}/feeds`)
-        .then(res => res.json())
-        .then((data) => setPost(data))
-        setLoading(false)
-    } catch (err) {
+    const delayDebounceFn = setTimeout(() => {
 
-    }
+      console.log(searchTerm)
+      try {
+        fetch(`${process.env.REACT_APP_API_URL}/feeds`)
+          .then(res => res.json())
+          .then((data) => setPost(data))
+
+      } catch (err) {
+
+      }
+
+    }, 3000)
+
+    setLoading(false)
+    
+    return () => clearTimeout(delayDebounceFn);
 
   }, [])
 
 
-  if(loading) {
+  if (loading) {
     return <Loading />
   }
   return (
