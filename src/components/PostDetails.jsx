@@ -36,7 +36,7 @@ const PostDetails = () => {
 
   }, [slug.slug])
 
-
+  if (loading) return <Loading />
   return (
     <div className='w-full flex flex-col'>
       <div className='grid grid-col-1 md:grid-cols-2 gap-5 md:gap-10 h-[500px]'>
