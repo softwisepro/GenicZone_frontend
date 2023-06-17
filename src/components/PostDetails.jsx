@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import Loading from './Loading'
 
 
 const PostDetails = () => {
 
   const [postDetail, setPostDetail] = useState()
+  const [loading, setLoadin] = useState(false)
 
   const slug = useParams()
 
   const current_user = JSON.parse(localStorage.getItem('user'))
 
   useEffect(() => {
+    setLoadin(true)
     try {
       fetch(`${process.env.REACT_APP_API_URL}/feed/${slug.slug}`)
         .then(res => res.json())
@@ -20,6 +23,7 @@ const PostDetails = () => {
     } catch (err) {
 
     }
+    setLoadin(false)
   }, [slug.slug])
 
 
@@ -38,11 +42,13 @@ const PostDetails = () => {
 
             <Link className='flex justify-center items-center gap-2'>
               <div className='w-16 h-16 flex rounded-full border overflow-hidden'>
-                <img
-                  src={`${process.env.REACT_APP_API_URL}${ postDetail?.postedByProfile?.profile_image }`}
-                  alt={postDetail?.postedByProfile?.username}
-                  className='w-full h-full'
-                />
+                {loading ? <Loading /> : (
+                  <img
+                    src={`${process.env.REACT_APP_API_URL}${postDetail?.postedByProfile?.profile_image}`}
+                    alt={postDetail?.postedByProfile?.username}
+                    className='w-full h-full'
+                  />
+                )}
               </div>
               <div className='flex flex-col justify-center items-center'>
                 <div className='w-full flex gap-2 text-xl font-semibold justify-center items-center'>
@@ -50,7 +56,9 @@ const PostDetails = () => {
                   <h1>{postDetail?.postedByProfile?.last_name}</h1>
                 </div>
                 <div>
-                  <h4 className='text-sm font-light'>@{postDetail?.postedByProfile?.username}</h4>
+                  {loading ? <Loading /> : (
+                    <h4 className='text-sm font-light'>@{postDetail?.postedByProfile?.username}</h4>
+                  )}
                 </div>
               </div>
             </Link>
@@ -68,7 +76,7 @@ const PostDetails = () => {
 
           <div className='w-full h-full'>
             <div className='px-10 text-justify text-sm'>
-              <p>{ postDetail?.content }</p>
+              <p>{postDetail?.content}</p>
             </div>
           </div>
 
