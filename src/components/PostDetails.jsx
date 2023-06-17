@@ -13,17 +13,27 @@ const PostDetails = () => {
   const current_user = JSON.parse(localStorage.getItem('user'))
 
   useEffect(() => {
-    setLoadin(true)
-    try {
-      fetch(`${process.env.REACT_APP_API_URL}/feed/${slug.slug}`)
-        .then(res => res.json())
-        .then((data) => {
-          setPostDetail(data)
-        })
-    } catch (err) {
 
-    }
+    setLoadin(true)
+
+    const delayDebounceFn = setTimeout(() => {
+
+      try {
+        fetch(`${process.env.REACT_APP_API_URL}/feed/${slug.slug}`)
+          .then(res => res.json())
+          .then((data) => {
+            setPostDetail(data)
+          })
+      } catch (err) {
+
+      }
+
+    }, 3000)
+
     setLoadin(false)
+
+    return () => clearTimeout(delayDebounceFn)
+
   }, [slug.slug])
 
 
@@ -58,9 +68,7 @@ const PostDetails = () => {
                   <h1>{postDetail?.postedByProfile?.last_name}</h1>
                 </div>
                 <div>
-                  {loading ? <Loading /> : (
-                    <h4 className='text-sm font-light'>@{postDetail?.postedByProfile?.username}</h4>
-                  )}
+                  <h4 className='text-sm font-light'>@{postDetail?.postedByProfile?.username}</h4>
                 </div>
               </div>
             </Link>

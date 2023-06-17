@@ -10,9 +10,9 @@ const Feed = () => {
   const [post, setPost] = useState([]);
 
   const category = useParams()
-
+  setLoading(true)
   useEffect(() => {
-    setLoading(true)
+
 
     const delayDebounceFn = setTimeout(() => {
 
@@ -28,16 +28,14 @@ const Feed = () => {
 
     }, 3000)
 
-    setLoading(false)
-    
+
+
     return () => clearTimeout(delayDebounceFn);
 
   }, [])
+  setLoading(false)
 
-
-  if (loading) {
-    return <Loading />
-  }
+  if (loading) return <Loading />
   return (
     <div>
       {post && (<MasonryLayout post={post} />)}
