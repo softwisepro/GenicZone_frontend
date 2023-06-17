@@ -9,7 +9,7 @@ import logo from '../assets/logo.png';
 import SessionExpired from '../components/SessionExpired';
 
 const Home = () => {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(null);
   const scrollRef = useRef(null);
   const [toggleSidebar, setToggleSidebar] = useState(false);
 
