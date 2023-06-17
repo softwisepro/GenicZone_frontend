@@ -31,11 +31,13 @@ const PostDetails = () => {
     <div className='w-full flex flex-col'>
       <div className='grid grid-col-1 md:grid-cols-2 gap-5 md:gap-10 h-[500px]'>
         <div className='flex justify-center items-center h-[500px]'>
-          <img
-            src={`${process.env.REACT_APP_API_URL}${postDetail?.image}`}
-            alt={postDetail?.title}
-            className='w-auto max-h-full'
-          />
+          {loading ? <Loading /> : (
+            <img
+              src={`${process.env.REACT_APP_API_URL}${postDetail?.image}`}
+              alt={postDetail?.title}
+              className='w-auto max-h-full'
+            />
+          )}
         </div>
         <div className='w-full'>
           <div className='w-full flex gap-2 justify-between py-2 md:py-7 px-5 items-center'>
