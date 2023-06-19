@@ -1,42 +1,28 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { HiMenu } from 'react-icons/hi';
-import { AiFillCloseCircle, AiOutlineSearch, AiOutlineUser } from 'react-icons/ai';
+import { AiFillCloseCircle } from 'react-icons/ai';
 import { Link, Routes, Route, useNavigate } from 'react-router-dom';
 
 import { Sidebar, UserProfile } from '../components';
 import Post from './Post';
-import logo from '../assets/logo.png';
+import defaulProfile from '../assets/default_profile.png';
 import SessionExpired from '../components/SessionExpired';
+import EditProfile from '../components/EditProfile';
 
-const Home = () => {
-  const [user, setUser] = useState(null);
+const Home = ({ user, passUser, setOpenModel, openModel }) => {
+
   const scrollRef = useRef(null);
   const [toggleSidebar, setToggleSidebar] = useState(false);
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const userInfo = localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear();
-
-  useEffect(() => {
-
-    if (!userInfo) {
-      navigate('/login', { replace: true })
-    } else {
-      fetch(`${process.env.REACT_APP_API_URL}/user/${userInfo?.id}`)
-        .then(res => res.json())
-        .then((data) => {
-          setUser(data)
-        })
-    }
-
-  }, [userInfo?.id])
-
+  const profileImage = `${process.env.REACT_APP_API_URL}${user?.profile_image}`
 
   useEffect(() => {
     scrollRef.current.scrollTo(0, 0)
   }, [])
 
-  if (!userInfo) {
+  if (!user) {
     return (
       <div className='p-2 flex-1 h-screen overflow-y-scroll' ref={scrollRef}>
         <Routes>
@@ -47,11 +33,11 @@ const Home = () => {
   }
 
   return (
-    <div className='flex bg-slate-50 md:flex-row flex-col h-screen transition-height ease-out duration-75'>
+    <div className='flex bg-slate-50 md:flex-row flex-col h-screen transition-height ease-out duration-300'>
       <div className='hidden md:flex h-screen flex-initial '>
-        <Sidebar user={user && user} />
+        <Sidebar user={user && user} passUser={passUser} setOpenModel={setOpenModel} openModel={openModel} />
       </div>
-      <div className='flex md:hidden flex-row'>
+      <div className='flex md:hidden flex-row z-30'>
         <div className='p-2 w-full flex justify-between items-center'>
 
           <Link to={'/'} className='flex w-full px-3 justify-start items-center'>
@@ -61,11 +47,11 @@ const Home = () => {
           <div className='flex justify-center items-center'>
             <div className='border rounded-full w-8 h-8 overflow-hidden'>
               <img
-                src={`${process.env.REACT_APP_API_URL}${userInfo?.profile_image}`}
-                alt={userInfo?.username}
+                src={`${user?.profile_image !== null ? profileImage : defaulProfile}`}
+                alt={user?.username}
                 className='cursor-pointer w-full h-full object-cover'
-                onClick={() => setToggleSidebar(true)}
-              />
+                onClick={() =>
+                  setToggleSidebar(true)} />
             </div>
           </div>
 
@@ -75,15 +61,16 @@ const Home = () => {
             <div className='absolute w-full flex justify-end items-center p-2'>
               <AiFillCloseCircle fontSize={30} className='cursor-pointer z-10 bg-white rounded-full p-1' onClick={() => setToggleSidebar(false)} />
             </div>
-            <Sidebar user={user && user} closeToggle={setToggleSidebar} />
+            <Sidebar user={user && user} closeToggle={setToggleSidebar} passUser={passUser} setOpenModel={setOpenModel} openModel={openModel} />
           </div>
         )}
       </div>
 
       <div className='p-2 flex-1 h-screen overflow-y-scroll' ref={scrollRef}>
         <Routes>
-          <Route path='/*' element={<Post />} />
-          <Route path='/user-profile' user={user && user} element={<UserProfile />} />
+          <Route path='/*' element={<Post user={user && user} />} />
+          <Route path='/profile/:username' element={<UserProfile user={user && user} />} />
+          <Route path='/profile/edit/:username' element={<EditProfile user={user && user} passUser={passUser} />} />
         </Routes>
       </div>
     </div>

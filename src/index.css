@@ -13,3 +13,33 @@
 .animate-slide-in {
   animation: slide 0.2s linear;
 }
+
+@keyframes error {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.animate-error-in {
+  animation: error 0.5s linear;
+}
+
+@keyframes in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.animate-in {
+  animation: in 0.5s linear;
+}
+
+@media (min-width: 348px) {
+  .xs\:hidden {
+    display: none;
+  }
+}
