@@ -8,6 +8,7 @@ import Post from './Post';
 import defaulProfile from '../assets/default_profile.png';
 import SessionExpired from '../components/SessionExpired';
 import EditProfile from '../components/EditProfile';
+import Preloader from '../components/Preloader'
 
 const Home = ({ user, passUser, setOpenModel, openModel }) => {
 
@@ -67,11 +68,13 @@ const Home = ({ user, passUser, setOpenModel, openModel }) => {
       </div>
 
       <div className='p-2 flex-1 h-screen overflow-y-scroll' ref={scrollRef}>
-        <Routes>
-          <Route path='/*' element={<Post user={user && user} />} />
-          <Route path='/profile/:username' element={<UserProfile user={user && user} />} />
-          <Route path='/profile/edit/:username' element={<EditProfile user={user && user} passUser={passUser} />} />
-        </Routes>
+        <Preloader>
+          <Routes>
+            <Route path='/*' element={<Post user={user && user} />} />
+            <Route path='/profile/:username' element={<UserProfile user={user && user} />} />
+            <Route path='/profile/edit/:username' element={<EditProfile user={user && user} passUser={passUser} />} />
+          </Routes>
+        </Preloader>
       </div>
     </div>
   )

@@ -10,7 +10,7 @@ const MasonryLayout = ({ post }) => {
     2000: 6,
     1200: 5,
     1000: 4,
-    500: 3,
+    500: 2,
   }
 
   return (
