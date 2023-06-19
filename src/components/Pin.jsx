@@ -26,7 +26,7 @@ const Pin = ({ post, post: { id, title, image, slug, about, user } }) => {
         <img
           className='w-full'
           alt={title}
-          src={`${process.env.REACT_APP_MEDIA_URL}${image}`}
+          src={`${image}`}
         />
       </div>
     </div>

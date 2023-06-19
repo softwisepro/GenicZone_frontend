@@ -15,7 +15,7 @@ const EditProfile = ({ user, passUser }) => {
 
   const [error, setError] = useState(null)
 
-  const profileImage = `${process.env.REACT_APP_MEDIA_URL}${user?.profile_image}`
+  const profileImage = `${user?.profile_image}`
 
   const handleChangeFile = (e) => {
     setImagePreview(URL.createObjectURL(e.target.files[0]));
