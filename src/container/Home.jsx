@@ -16,7 +16,7 @@ const Home = ({ user, passUser, setOpenModel, openModel }) => {
 
   const navigate = useNavigate()
 
-  const profileImage = `${process.env.REACT_APP_API_URL}${user?.profile_image}`
+  const profileImage = `${process.env.REACT_APP_MEDIA_URL}${user?.profile_image}`
 
   useEffect(() => {
     scrollRef.current.scrollTo(0, 0)

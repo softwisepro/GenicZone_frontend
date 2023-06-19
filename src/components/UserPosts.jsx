@@ -27,7 +27,7 @@ const UserPosts = ({ posts, user, posts: { title, slug, image } }) => {
               <img
                 className='w-full'
                 alt={post.title}
-                src={`${process.env.REACT_APP_API_URL}${post.image}`}
+                src={`${process.env.REACT_APP_MEDIA_URL}${post.image}`}
               />
             </div>
           </div>

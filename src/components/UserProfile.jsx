@@ -60,7 +60,7 @@ const UserProfile = ({ user }) => {
     </>
   )
 
-  const profileImage = `${process.env.REACT_APP_API_URL}${user?.profile_image}`
+  const profileImage = `${process.env.REACT_APP_MEDIA_URL}${user?.profile_image}`
 
   return (
     <div className='flex flex-col w-full relative'>
