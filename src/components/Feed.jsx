@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 import MasonryLayout from './MasonryLayout';
-import Loading from './Loading'
 import { useParams } from 'react-router-dom';
 
 const Feed = () => {
@@ -25,10 +24,6 @@ const Feed = () => {
 
   }, [])
 
-
-  if(loading) {
-    return <Loading />
-  }
   return (
     <div>
       {post && (<MasonryLayout post={post} />)}

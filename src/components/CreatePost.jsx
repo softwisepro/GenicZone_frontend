@@ -55,7 +55,7 @@ const CreatePost = ({ user, openModel, setCloseModel }) => {
   return (
     <>
       <div id='model_' onClick={e => handleModel(e)} className='absolute bg-black/30 w-full inset-0 z-50 flex justify-center items-center'>
-        <div className='bg-white p-5 h-1/2 md:h-full md:w-1/2 lg:w-1/3 rounded-lg shadow-inner bg-opacuty-70'>
+        <div className='bg-white p-5 h-1/2 md:h-1/2 md:w-1/2 lg:w-1/3 rounded-lg shadow-inner bg-opacuty-70'>
           <form onSubmit={submitForm} className='flex flex-col gap-5'>
             <button
             type='submit'

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { RiAtLine } from 'react-icons/ri'
 import { Link, useParams } from 'react-router-dom'
+import Preloader from './Preloader'
 
 
 const PostDetails = ({ user }) => {
@@ -35,23 +36,27 @@ const PostDetails = ({ user }) => {
   return (
     <div className='w-full flex flex-col'>
       <div className='grid grid-col-1 md:grid-cols-2 gap-5 md:gap-10 h-[500px]'>
-        <div className='flex justify-center items-center h-[500px]'>
-          <img
-            src={`${postDetail?.image}`}
-            alt={postDetail?.title}
-            className='w-auto max-h-full'
-          />
-        </div>
+        <Preloader>
+          <div className='flex justify-center items-center h-[500px]'>
+            <img
+              src={`${postDetail?.image}`}
+              alt={postDetail?.title}
+              className='w-auto max-h-full'
+            />
+          </div>
+        </Preloader>
         <div className='w-full'>
           <div className='w-full flex gap-2 justify-between py-2 md:py-7 px-5 items-center border-b mb-2'>
 
             <Link className='flex justify-center items-center gap-2'>
               <div className='w-12 h-12 flex rounded-full border overflow-hidden'>
-                <img
-                  src={`${postDetail?.postedByProfile?.profile_image}`}
-                  alt={postDetail?.postedByProfile?.username}
-                  className='w-full h-full'
-                />
+                <Preloader>
+                  <img
+                    src={`${postDetail?.postedByProfile?.profile_image}`}
+                    alt={postDetail?.postedByProfile?.username}
+                    className='w-full h-full'
+                  />
+                </Preloader>
               </div>
               <div className='flex flex-col justify-center items-center'>
                 {/* <div className='w-full flex gap-2 text-xl font-semibold justify-center items-center'>

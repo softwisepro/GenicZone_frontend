@@ -1,6 +1,7 @@
 import React from 'react'
 import Masonry from 'react-masonry-css'
 import Pin from './Pin'
+import Preloader from './Preloader'
 
 const MasonryLayout = ({ post }) => {
 
@@ -16,15 +17,17 @@ const MasonryLayout = ({ post }) => {
   return (
     <Masonry className='flex animate' breakpointCols={breakpointObj}>
 
-      {post?.map((post) => (
+      <Preloader>
+        {post?.map((post) => (
 
-        <Pin
-          key={post.id}
-          post={post}
-          className='w-max'
-        />
+          <Pin
+            key={post.id}
+            post={post}
+            className='w-max'
+          />
 
-      ))}
+        ))}
+      </Preloader>
 
     </Masonry>
   )

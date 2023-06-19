@@ -1,6 +1,7 @@
 import React from 'react'
 import Masonry from 'react-masonry-css'
 import { useNavigate } from 'react-router-dom'
+import Preloader from './Preloader'
 
 const UserPosts = ({ posts, user, posts: { title, slug, image } }) => {
 
@@ -16,7 +17,7 @@ const UserPosts = ({ posts, user, posts: { title, slug, image } }) => {
   }
 
   return (
-    <>
+    <Preloader>
       <Masonry className='flex animate' breakpointCols={breakpointObj}>
         {posts.map((post) => (
           <div key={slug} className='p-[0.02rem] md:p-1'>
@@ -33,7 +34,7 @@ const UserPosts = ({ posts, user, posts: { title, slug, image } }) => {
           </div>
         ))}
       </Masonry>
-    </>
+    </Preloader>
   )
 }
 
