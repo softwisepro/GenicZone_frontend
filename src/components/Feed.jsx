@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import MasonryLayout from './MasonryLayout';
 import { useParams } from 'react-router-dom';
+import Preloader from './Preloader';
 
 const Feed = () => {
 
@@ -25,9 +26,9 @@ const Feed = () => {
   }, [])
 
   return (
-    <div>
+    <Preloader>
       {post && (<MasonryLayout post={post} />)}
-    </div>
+    </Preloader>
   )
 }
 

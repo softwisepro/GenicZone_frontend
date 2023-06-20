@@ -55,7 +55,7 @@ const CreatePost = ({ user, openModel, setCloseModel }) => {
   return (
     <>
       <div id='model_' onClick={e => handleModel(e)} className='absolute bg-black/30 w-full inset-0 z-50 flex justify-center items-center'>
-        <div className='bg-white p-5 h-1/2 md:h-1/2 md:w-1/2 lg:w-1/3 rounded-lg shadow-inner bg-opacuty-70'>
+        <div className='bg-white p-5 my-10 h-auto md:h-1/2 md:h-auto md:w-1/2 lg:w-1/3 rounded-lg shadow-inner bg-opacuty-70'>
           <form onSubmit={submitForm} className='flex flex-col gap-5'>
             <button
             type='submit'
@@ -73,9 +73,8 @@ const CreatePost = ({ user, openModel, setCloseModel }) => {
 
             <div className='relative'>
               <textarea
-                className={`text-sm w-full px-4 py-2 border resize-none border-gray-300 rounded outline-none bg-transparent`}
+                className={`text-sm w-full px-4 py-2 border resize-y border-gray-300 rounded outline-none bg-transparent`}
                 type="text"
-                rows={20}
                 placeholder={`Write something...`}
                 value={content}
                 onChange={e => setContent(e.target.value)}
