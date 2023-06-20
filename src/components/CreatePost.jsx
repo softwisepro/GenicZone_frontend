@@ -76,6 +76,7 @@ const CreatePost = ({ user, openModel, setCloseModel }) => {
                 className={`text-sm w-full px-4 py-2 border resize-y border-gray-300 rounded outline-none bg-transparent`}
                 type="text"
                 placeholder={`Write something...`}
+                rows={15}
                 value={content}
                 onChange={e => setContent(e.target.value)}
               ></textarea>
